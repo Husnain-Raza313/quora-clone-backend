@@ -10,7 +10,7 @@ export class QuestionService {
   constructor(
     @InjectModel(Question.name) private questionModel: Model<QuestionDocument>,
   ) {}
-  create(createQuestionDto: CreateQuestionDto) {
+  create(createQuestionDto: CreateQuestionDto): Promise<Question> {
     const model = new this.questionModel();
     model.content = createQuestionDto.content;
     model.user = createQuestionDto.user;
@@ -18,11 +18,11 @@ export class QuestionService {
     return model.save();
   }
 
-  findAll() {
+  findAll(): Promise<Question[]> {
     return this.questionModel.find().exec();
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<Question> {
     return this.questionModel.findById(id).exec();
   }
 
