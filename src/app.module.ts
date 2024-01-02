@@ -5,6 +5,8 @@ import { UserModule } from './user/user.module';
 import { TopicModule } from './topic/topic.module';
 import { QuestionModule } from './question/question.module';
 import { AnswerModule } from './answer/answer.module';
+import { LikeModule } from './like/like.module';
+import { FollowModule } from './follow/follow.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { AnswerModule } from './answer/answer.module';
     TopicModule,
     QuestionModule,
     AnswerModule,
+    LikeModule,
+    FollowModule,
   ],
   controllers: [],
   providers: [],
