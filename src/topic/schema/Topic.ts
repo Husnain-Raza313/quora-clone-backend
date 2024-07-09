@@ -16,6 +16,12 @@ export class Topic extends Document {
 
   @Prop({ type: 'ObjectId', ref: 'User' })
   user: string;
+
+  @Prop({ type: [{ type: 'ObjectId', ref: 'Question' }] })
+  questions: string[];
+
+  @Prop({ type: [{ type: 'ObjectId', ref: 'User' }] })
+  followers: string[];
 }
 
 export const TopicSchema = SchemaFactory.createForClass(Topic);

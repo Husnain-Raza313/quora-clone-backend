@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('question')
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
@@ -41,5 +44,21 @@ export class QuestionController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.questionService.remove(id);
+  }
+
+  @Post(':questionId/like')
+  async likeQuestion(
+    @Param('questionId') questionId: string,
+    @Body('userId') userId: string,
+  ) {
+    return this.questionService.likeQuestion(questionId, userId);
+  }
+
+  @Post(':questionId/dislike')
+  async dislikeQuestion(
+    @Param('questionId') questionId: string,
+    @Body('userId') userId: string,
+  ) {
+    return this.questionService.dislikeQuestion(questionId, userId);
   }
 }

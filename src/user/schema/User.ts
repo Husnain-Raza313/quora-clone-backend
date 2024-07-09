@@ -21,7 +21,16 @@ export class User extends Document {
   username: string;
 
   @Prop({ required: true })
+  password: string;
+
+  @Prop({ required: true })
+  salt: string;
+
+  @Prop({ required: true })
   profilePicture: string;
+
+  @Prop({ type: [{ type: 'ObjectId', ref: 'Topic' }] })
+  followedTopics: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -13,6 +13,12 @@ export class Answer extends Document {
 
   @Prop({ type: 'ObjectId', ref: 'Question' })
   question: string;
+
+  @Prop({ type: [{ type: 'ObjectId', ref: 'User' }] })
+  likedUsers: string[];
+
+  @Prop({ type: [{ type: 'ObjectId', ref: 'User' }] })
+  dislikedUsers: string[];
 }
 
 export const AnswerSchema = SchemaFactory.createForClass(Answer);

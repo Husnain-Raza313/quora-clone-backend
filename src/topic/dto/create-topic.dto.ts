@@ -1,7 +1,14 @@
-import { IsMongoId, IsNotEmpty, IsUrl } from 'class-validator';
+import {
+  IsArray,
+  IsMongoId,
+  IsNotEmpty,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 export class CreateTopicDto {
   @IsNotEmpty()
+  @IsString()
   title: string;
 
   @IsNotEmpty()
@@ -14,4 +21,12 @@ export class CreateTopicDto {
   @IsMongoId()
   @IsNotEmpty()
   user: string;
+
+  @IsArray()
+  @IsMongoId({ each: true })
+  questions: string[];
+
+  @IsArray()
+  @IsMongoId({ each: true })
+  followers: string[];
 }

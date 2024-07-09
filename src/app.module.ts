@@ -5,8 +5,8 @@ import { UserModule } from './user/user.module';
 import { TopicModule } from './topic/topic.module';
 import { QuestionModule } from './question/question.module';
 import { AnswerModule } from './answer/answer.module';
-import { LikeModule } from './like/like.module';
-import { FollowModule } from './follow/follow.module';
+import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -25,10 +25,9 @@ import { FollowModule } from './follow/follow.module';
     TopicModule,
     QuestionModule,
     AnswerModule,
-    LikeModule,
-    FollowModule,
+    AuthModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

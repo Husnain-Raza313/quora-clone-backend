@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsUrl } from 'class-validator';
+import {
+  IsArray,
+  IsEmail,
+  IsMongoId,
+  IsNotEmpty,
+  IsUrl,
+} from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -16,7 +22,17 @@ export class CreateUserDto {
   @IsNotEmpty()
   username: string;
 
+  @IsNotEmpty()
+  password: string;
+
+  @IsNotEmpty()
+  salt: string;
+
   @IsUrl()
   @IsNotEmpty()
   profilePicture: string;
+
+  @IsArray()
+  @IsMongoId({ each: true })
+  followedTopics: string[];
 }

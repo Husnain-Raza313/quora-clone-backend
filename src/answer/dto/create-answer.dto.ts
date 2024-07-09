@@ -1,4 +1,4 @@
-import { IsMongoId, IsNotEmpty } from 'class-validator';
+import { IsArray, IsMongoId, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateAnswerDto {
   @IsNotEmpty()
@@ -11,4 +11,14 @@ export class CreateAnswerDto {
   @IsMongoId()
   @IsNotEmpty()
   user: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({ each: true })
+  likedUsers?: string[];
+
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({ each: true })
+  dislikedUsers?: string[];
 }
